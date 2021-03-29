@@ -1,0 +1,4 @@
+/home/nadezhda/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.7148.70/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/nadezhda/CLionProjects/AI
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/nadezhda/CLionProjects/AI/cmake-build-debug
