@@ -22,24 +22,6 @@ Point.h
 
 /home/nadezhda/CLionProjects/AI/Point.h
 
-/home/nadezhda/CLionProjects/AI/Sokoban.cpp
-Sokoban.h
-/home/nadezhda/CLionProjects/AI/Sokoban.h
-fstream
--
-map
--
-algorithm
--
-iterator
--
-cmath
--
-vector
--
-Point.h
-/home/nadezhda/CLionProjects/AI/Point.h
-
 /home/nadezhda/CLionProjects/AI/Sokoban.h
 fstream
 -
@@ -61,4 +43,12 @@ Point.h
 /home/nadezhda/CLionProjects/AI/Point.h
 Astar.h
 /home/nadezhda/CLionProjects/AI/Astar.h
+
+/home/nadezhda/CLionProjects/AI/main.cpp
+iostream
+-
+Sokoban.h
+/home/nadezhda/CLionProjects/AI/Sokoban.h
+Point.h
+/home/nadezhda/CLionProjects/AI/Point.h
 

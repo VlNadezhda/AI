@@ -4,7 +4,7 @@
 using namespace std;
 
 multimap <char,Point> ReadFile(){
-    string filename = "/home/nadezhda/CLionProjects/AI/g_map2.txt";
+    string filename = "/home/nadezhda/CLionProjects/AI/g_map3.txt";
     multimap <char,Point> board;
     std::ifstream out;
     char ch;
