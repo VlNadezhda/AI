@@ -1,10 +1,10 @@
 #include <iostream>
-#include "Sokoban.cpp"
+#include "Sokoban.h"
 #include "Point.h"
 using namespace std;
 
 multimap <char,Point> ReadFile(){
-    string filename = "/home/nadezhda/CLionProjects/AI/g_map.txt";
+    string filename = "/home/nadezhda/CLionProjects/AI/g_map2.txt";
     multimap <char,Point> board;
     std::ifstream out;
     char ch;

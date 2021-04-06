@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/nadezhda/CLionProjects/AI/Astar.cpp
-Astar.h
-/home/nadezhda/CLionProjects/AI/Astar.h
-Sokoban.h
-/home/nadezhda/CLionProjects/AI/Sokoban.h
-
 /home/nadezhda/CLionProjects/AI/Astar.h
 Point.cpp
 /home/nadezhda/CLionProjects/AI/Point.cpp
@@ -51,6 +45,8 @@ fstream
 -
 map
 -
+unordered_map
+-
 algorithm
 -
 iterator
@@ -65,12 +61,4 @@ Point.h
 /home/nadezhda/CLionProjects/AI/Point.h
 Astar.h
 /home/nadezhda/CLionProjects/AI/Astar.h
-
-/home/nadezhda/CLionProjects/AI/main.cpp
-iostream
--
-Sokoban.cpp
-/home/nadezhda/CLionProjects/AI/Sokoban.cpp
-Point.h
-/home/nadezhda/CLionProjects/AI/Point.h
 

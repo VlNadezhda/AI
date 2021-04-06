@@ -19,7 +19,6 @@ CMakeFiles/AI.dir/Sokoban.cpp.o: ../Sokoban.h
 CMakeFiles/AI.dir/main.cpp.o: ../Astar.h
 CMakeFiles/AI.dir/main.cpp.o: ../Point.cpp
 CMakeFiles/AI.dir/main.cpp.o: ../Point.h
-CMakeFiles/AI.dir/main.cpp.o: ../Sokoban.cpp
 CMakeFiles/AI.dir/main.cpp.o: ../Sokoban.h
 CMakeFiles/AI.dir/main.cpp.o: ../main.cpp
 

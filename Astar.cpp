@@ -30,7 +30,8 @@ std::vector<Point> Astar::findPath() {
 //исправить если появиться возможность передвигаться по диагонали
         for(unsigned  int i = 0; i < 4; ++i){
             Point newCoord(current->coordinates+direction[i]);
-            if(detectCollision(newCoord) || findNodeOnList(closedSet,newCoord)){
+            Point player = current->coordinates-direction[i];
+            if(detectCollision(newCoord, player) || findNodeOnList(closedSet,newCoord)){
                 continue;
             }
 
@@ -57,11 +58,14 @@ std::vector<Point> Astar::findPath() {
 
 }
 
-bool Astar::detectCollision(Point coord) {
-    if (std::find(walls.begin(), walls.end(), coord) != walls.end()) {
+bool Astar::detectCollision(Point coord, Point player) {
+    if (std::find(walls.begin(), walls.end(), coord) != walls.end() && flag == false) {
+        return true;
+    }else if((std::find(walls.begin(), walls.end(), coord) != walls.end() || std::find(walls.begin(), walls.end(), player) != walls.end() ) && flag == true){
         return true;
     }
-    return false;
+     return false;
+
 }
 
 Node *Astar::findNodeOnList(std::vector<Node*>& nodes, Point coord) {

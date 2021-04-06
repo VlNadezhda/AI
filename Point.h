@@ -29,7 +29,6 @@ public:
         return (x == coordinates.x && y == coordinates.y);
     };
 
-
 };
 
 

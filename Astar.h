@@ -26,19 +26,8 @@ public:
     }
 };
 
-
-
-class HeapCompare_f
-{
-public:
-
-    bool operator() ( const Node *x, const Node *y ) const
-    {
-        return x->f > y->f;
-    }
-};
-
 class Astar {
+    bool flag;
     std::vector<Node*> NodeSet;
     std::vector<Point> CoordinateList;
     std::vector<Point> walls;
@@ -47,7 +36,7 @@ class Astar {
     const Point direction[4] =  {{0,1},{1,0},{0,-1},{-1,0}};
 public:
 
-    Astar(Point source_, Point target_, std::vector<Point> wall_): Sourse(source_), Target(target_), walls(wall_){}
+    Astar(Point source_, Point target_, std::vector<Point> wall_,bool flag_): Sourse(source_), Target(target_), walls(wall_),flag(flag_){}
 
     std::vector<Point> findPath();
     Node* findNodeOnList(std::vector<Node*>& node, Point coord);
@@ -57,7 +46,7 @@ public:
       return sqrt(pow((source.x - target.x),2) + pow((source.y - target.y),2));
   }
 
-  bool detectCollision(Point p);
+  bool detectCollision(Point p, Point wall);
 
 };
 
