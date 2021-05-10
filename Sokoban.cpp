@@ -7,84 +7,176 @@
 #include <vector>
 #include "Point.h"
 
+#define DEBAG
+
 void Sokoban::Solver() {
     vector<vector<Point>> MainWay;
-    vector<Way_bar_mar> SortList = path_barrel_to_memark(this->marks, this->barrel);
-    vector<Point> sequence = Find_false_path(SortList);
-    vector<Point> newBarrel = sequence;
-    for(unsigned  int i = 0; i < barrel.size(); ++i){
-        if(find(newBarrel.begin(), newBarrel.end(), barrel[i]) == newBarrel.end()){
-            newBarrel.push_back(barrel[i]);
+//    Находим кратчайший путь от бочки до цели
+    vector SortList = path_bar_mark(this->marks, this->barrel);
+//    Находим есть ли на пути другая бочка
+    vector sequence = Find_barrier(SortList);
+    vector newBarrel = sequence;
+//    Новый порядок обхода бочек с учётом преград
+        for (uint i = 0; i < barrel.size(); ++i) {
+            if (find(newBarrel.begin(), newBarrel.end(), barrel[i]) == newBarrel.end()) {
+                newBarrel.push_back(barrel[i]);
+            }
+#ifdef DEBAG
+            cout<<"После поиска повторов: bar:"<<barrel[i].x<<";"<<barrel[i].y<<endl;
+#endif
+
         }
-    }
-    SortList = path_barrel_to_memark(this->marks,newBarrel);
-//            sequence = Find_false_path(SortList);
+        SortList = path_bar_mark(this->marks, newBarrel);
+#ifdef DEBAG
+        cout<<"Пути от бочки до цели"<<endl;
+        for (auto i: SortList) {
+            cout << "_________" << endl;
+            for (auto j: i.GetWay()) {
+                cout << "<" << j.x << ":" << j.y << ">" << endl;
+            }
+        }
+#endif
+//            sequence = Find_barrier(SortList);
 
     vector<Point> players_path;
-    Point player_;
+        Way_BM first;
     for (auto i: SortList) {
-        i.SetTarget();
-        vector<Point> way = Astar(player, i.GetTarget(), walls, false).findPath();
+        vector way = Astar(player, i.GetTarget(), walls, false).findPath();
         if (players_path.empty() || players_path.size() > way.size()) {
             players_path = way;
+            first = i;
         }
     }
     reverse(players_path.begin(),players_path.end());
     MainWay.push_back(players_path);
-    while (!SortList.empty()) {
-        player_ = *(MainWay.back().begin()+MainWay.back().size()-1);
-//                cout<<player_.x<<";;"<<player_.y<<endl;
-        auto it = SortList.end();
-        for (auto i: SortList) {
-            i.SetTarget();
-            string flag;
-            if (i.GetTarget() == player_) {
-                vector<Point> temp = i.GetWay();
-                auto iter = temp.begin()+temp.size()-1;
-                temp.erase(iter);
-                MainWay.push_back(temp);
-                it = find(SortList.begin(), SortList.end(), i);
-            }
-        }
-        auto bar_it = find(barrel.begin(),barrel.end(),it->GetBarrel());
-        if(bar_it != barrel.end()){barrel.erase(bar_it);}
-        auto mar_it = find(marks.begin(),marks.end(),it->GetMarks());
-        if(mar_it != marks.end()){marks.erase(mar_it);}
+    MainWay.push_back(first.GetWay());
+    auto it = find(barrel.begin(),barrel.end(),first.GetBarrel());
+    if(it != barrel.end()){barrel.erase(it);}
+    it = find(marks.begin(),marks.end(),first.GetMarks());
+    if(it != marks.end()){marks.erase(it);}
 
-        SortList.erase(it);
-        if(SortList.empty()){
-            break;
-        }
-        players_path.clear();
-        player_ = MainWay.back().back();
-//                cout<<"Player="<<player_.x<<":"<<player_.y<<endl;
 
-        vector<Point> Walls = walls;
+#ifdef DEBAG
+    cout<<"Путь от игрока до первой бочки и до первой цели"<<endl;
+    for(auto i: MainWay) {
+        cout<<"......"<<endl;
+        for (auto j: i) {
+            cout << "(" << j<< ")" << endl;
+        }
+    }
+#endif
+
+    for(auto it = SortList.begin(); it != SortList.end(); it++){
+        if(it->GetTarget() == first.GetTarget() && SortList.size() > 2){
+          SortList.erase(it);
+        }
+    }
+    for(auto i: SortList) {
+        cout << "(" << i.GetTarget()<< ")" << endl;
+        cout << "(" << i.GetBarrel()<<"."<<i.GetMarks()<< ")" << endl;
+        for(auto j: i.GetWay()){
+            cout << "<" << j << ">" << endl;
+        }
+    }
+    while (!SortList.empty() || !barrel.empty() || !marks.empty()){
+        vector Walls = walls;
         Walls.reserve(Walls.size()+barrel.size());
         Walls.insert(Walls.end(),barrel.begin(),barrel.end());
-        for (auto i: SortList) {
-            i.SetTarget();
-            vector<Point> way = Astar(player_, i.GetTarget(), Walls, true).findPath();
-            if (players_path.empty() || players_path.size() > way.size()) {
-                players_path = way;
-            }
+
+        auto it1 = SortList.begin();
+        auto player_ = (MainWay.end() - 1)->end() - 1;
+
+        auto tar = it1->GetTarget();
+        vector p = Astar(*player_,tar,Walls,false).findPath();
+#ifdef DEBAG
+
+        cout<<"pl tar"<<endl;
+        cout<<*player_<<" "<<tar<<endl;
+        for (auto j: p){
+            cout << "*" << j<< "*" << endl;
         }
-        reverse(players_path.begin(),players_path.end());
-        MainWay.push_back(players_path);
-        Walls.clear();
+#endif
+            reverse(p.begin(),p.end());
+            MainWay.push_back(p);
+            MainWay.push_back(it1->GetWay());
+
+
+//        удаляем из рассмотрения бочку до которой добавили путь
+        auto bar_it = find(barrel.begin(),barrel.end(),it1->GetBarrel());
+        if(bar_it != barrel.end()){barrel.erase(bar_it);}
+//        удаляем из рассмотрения марку
+        auto mar_it = find(marks.begin(),marks.end(),it1->GetMarks());
+        if(mar_it != marks.end()){marks.erase(mar_it);}
+        it1++;
+        SortList.erase(SortList.begin());
+
+//        auto it = SortList.end();
+//        Добавляем к основной цепочки с координатами путь от бочки до цели
+//        for (auto i: SortList) {
+////            cout<<i.GetTarget()<<endl;
+//            if (i.GetTarget() == player_) {
+////                cout<<i.GetTarget()<<"this"<<endl;
+//                vector temp = i.GetWay();
+//                auto iter = temp.begin()+temp.size()-1;
+//                temp.erase(iter);
+//                MainWay.push_back(temp);
+//                it = find(SortList.begin(), SortList.end(), i);
+//            }
+//        }
+//#ifdef DEBAG
+//        cout<<"Бочка"<<it->GetBarrel()<<";"<<it->GetMarks()<<endl;
+//        for(auto i: it->GetWay()){
+//            cout<<"["<<i<<"]"<<endl;
+//        }
+//#endif
+////        удаляем из рассмотрения бочку до которой добавили путь
+//        auto bar_it = find(barrel.begin(),barrel.end(),it->GetBarrel());
+//        if(bar_it != barrel.end()){barrel.erase(bar_it);}
+////        удаляем из рассмотрения марку
+//        auto mar_it = find(marks.begin(),marks.end(),it->GetMarks());
+//        if(mar_it != marks.end()){marks.erase(mar_it);}
+//
+//        SortList.erase(it);
+//        if(SortList.empty()){
+//            break;
+//        }
+//        players_path.clear();
+//        player_ = MainWay.back().back();
+//
+//        vector Walls = walls;
+//        Walls.reserve(Walls.size()+barrel.size());
+//        Walls.insert(Walls.end(),barrel.begin(),barrel.end());
+//        for (auto i: SortList) {
+//            vector way = Astar(player_, i.GetTarget(), Walls, true).findPath();
+//            if (players_path.empty() || players_path.size() > way.size()) {
+//                players_path = way;
+//            }
+//        }
+//        reverse(players_path.begin(),players_path.end());
+//#ifdef DEBAG
+//        cout<<"Путь от игрока до бочек"<<endl;
+//        for(auto i: players_path){
+//            cout<<"<"<<i.x<<";"<<i.y<<">"<<endl;
+//        }
+//#endif
+//        MainWay.push_back(players_path);
+//        Walls.clear();
+//
+//        player_ = SortList.begin()->GetTarget();
+//        cout<<player_<<endl;
     }
 
     for(auto i: MainWay) {
         cout<<"_________"<<endl;
         for (auto j: i) {
-            cout << "<" << j.x << ":" << j.y << ">" << endl;
+            cout << "(" << j<< ")" << endl;
         }
     }
     Write_to_File(MainWay);
 
 }
 
-vector<Point> Sokoban::Find_false_path(vector<Way_bar_mar> SortList) {
+vector<Point> Sokoban::Find_barrier(vector<Way_BM> SortList) {
     vector<Point> sequence;
     vector<Point> temp;
     for (auto i: SortList) {
@@ -96,30 +188,28 @@ vector<Point> Sokoban::Find_false_path(vector<Way_bar_mar> SortList) {
         }
     }
 //            for(auto i:sequence){
-//                cout<<i.x<<"::"<<i.y<<endl;
+//                cout<<"sec"<<i.x<<"::"<<i.y<<endl;
 //            }
     temp.clear();
     return sequence;
 }
 
-vector<Way_bar_mar> Sokoban::path_barrel_to_memark(vector<Point> Marks_, vector<Point> Barrel_) {
-    vector<Way_bar_mar> SortList;
-    vector<Point> marks_ = Marks_;
-    vector<Point> barrel_ = Barrel_;
-    for(unsigned  int i = 0; i < barrel_.size(); ++i){
+vector<Way_BM> Sokoban::path_bar_mark(vector<Point> Marks_, vector<Point> Barrel_) {
+    vector<Way_BM> SortList;
+    for(unsigned  int i = 0; i < Barrel_.size(); ++i){
         vector<Point> short_way;
         int mmarks;
-        for(unsigned  int j = 0; j < marks_.size(); ++j){
-            vector<Point> way = Astar(barrel_[i], marks_[j], walls, true).findPath();
+        for(unsigned  int j = 0; j < Marks_.size(); ++j){
+            vector way = Astar(Barrel_[i], Marks_[j], walls, true).findPath();
             if(short_way.empty() || short_way.size() > way.size()){
                 short_way = way;
                 mmarks = j;
             }
         }
         reverse(short_way.begin(),short_way.end());
-        SortList.push_back(Way_bar_mar(barrel_[i], marks_[mmarks], short_way));
-        auto it = find(marks_.begin(), marks_.end(), marks_[mmarks]);
-        marks_.erase(it);
+        SortList.push_back(Way_BM(Barrel_[i], Marks_[mmarks], short_way));
+        auto it = find(Marks_.begin(), Marks_.end(), Marks_[mmarks]);
+        Marks_.erase(it);
     }
     return SortList;
 }

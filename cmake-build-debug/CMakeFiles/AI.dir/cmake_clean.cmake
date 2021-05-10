@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "AI.pdb"
   "CMakeFiles/AI.dir/Astar.cpp.o"
   "CMakeFiles/AI.dir/Point.cpp.o"
+  "CMakeFiles/AI.dir/PrintGame.cpp.o"
   "CMakeFiles/AI.dir/Sokoban.cpp.o"
   "CMakeFiles/AI.dir/main.cpp.o"
 )

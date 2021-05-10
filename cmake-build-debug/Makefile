@@ -197,6 +197,33 @@ Point.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AI.dir/build.make CMakeFiles/AI.dir/Point.cpp.s
 .PHONY : Point.cpp.s
 
+PrintGame.o: PrintGame.cpp.o
+
+.PHONY : PrintGame.o
+
+# target to build an object file
+PrintGame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AI.dir/build.make CMakeFiles/AI.dir/PrintGame.cpp.o
+.PHONY : PrintGame.cpp.o
+
+PrintGame.i: PrintGame.cpp.i
+
+.PHONY : PrintGame.i
+
+# target to preprocess a source file
+PrintGame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AI.dir/build.make CMakeFiles/AI.dir/PrintGame.cpp.i
+.PHONY : PrintGame.cpp.i
+
+PrintGame.s: PrintGame.cpp.s
+
+.PHONY : PrintGame.s
+
+# target to generate assembly for a file
+PrintGame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AI.dir/build.make CMakeFiles/AI.dir/PrintGame.cpp.s
+.PHONY : PrintGame.cpp.s
+
 Sokoban.o: Sokoban.cpp.o
 
 .PHONY : Sokoban.o
@@ -266,6 +293,9 @@ help:
 	@echo "... Point.o"
 	@echo "... Point.i"
 	@echo "... Point.s"
+	@echo "... PrintGame.o"
+	@echo "... PrintGame.i"
+	@echo "... PrintGame.s"
 	@echo "... Sokoban.o"
 	@echo "... Sokoban.i"
 	@echo "... Sokoban.s"

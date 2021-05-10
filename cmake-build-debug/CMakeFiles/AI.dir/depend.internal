@@ -10,6 +10,13 @@ CMakeFiles/AI.dir/Astar.cpp.o
 CMakeFiles/AI.dir/Point.cpp.o
  /home/nadezhda/CLionProjects/AI/Point.cpp
  /home/nadezhda/CLionProjects/AI/Point.h
+CMakeFiles/AI.dir/PrintGame.cpp.o
+ /home/nadezhda/CLionProjects/AI/Astar.h
+ /home/nadezhda/CLionProjects/AI/Point.cpp
+ /home/nadezhda/CLionProjects/AI/Point.h
+ /home/nadezhda/CLionProjects/AI/PrintGame.cpp
+ /home/nadezhda/CLionProjects/AI/PrintGame.h
+ /home/nadezhda/CLionProjects/AI/Sokoban.h
 CMakeFiles/AI.dir/Sokoban.cpp.o
  /home/nadezhda/CLionProjects/AI/Astar.h
  /home/nadezhda/CLionProjects/AI/Point.cpp
@@ -20,5 +27,6 @@ CMakeFiles/AI.dir/main.cpp.o
  /home/nadezhda/CLionProjects/AI/Astar.h
  /home/nadezhda/CLionProjects/AI/Point.cpp
  /home/nadezhda/CLionProjects/AI/Point.h
+ /home/nadezhda/CLionProjects/AI/PrintGame.h
  /home/nadezhda/CLionProjects/AI/Sokoban.h
  /home/nadezhda/CLionProjects/AI/main.cpp

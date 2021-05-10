@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/AI.dir/main.cpp.o CMakeFiles/AI.dir/Point.cpp.o CMakeFiles/AI.dir/Sokoban.cpp.o CMakeFiles/AI.dir/Astar.cpp.o  -o AI 
+/usr/bin/c++  -g   CMakeFiles/AI.dir/main.cpp.o CMakeFiles/AI.dir/Point.cpp.o CMakeFiles/AI.dir/Sokoban.cpp.o CMakeFiles/AI.dir/Astar.cpp.o CMakeFiles/AI.dir/PrintGame.cpp.o  -o AI 

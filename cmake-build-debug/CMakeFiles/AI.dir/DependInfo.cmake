@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/nadezhda/CLionProjects/AI/Astar.cpp" "/home/nadezhda/CLionProjects/AI/cmake-build-debug/CMakeFiles/AI.dir/Astar.cpp.o"
   "/home/nadezhda/CLionProjects/AI/Point.cpp" "/home/nadezhda/CLionProjects/AI/cmake-build-debug/CMakeFiles/AI.dir/Point.cpp.o"
+  "/home/nadezhda/CLionProjects/AI/PrintGame.cpp" "/home/nadezhda/CLionProjects/AI/cmake-build-debug/CMakeFiles/AI.dir/PrintGame.cpp.o"
   "/home/nadezhda/CLionProjects/AI/Sokoban.cpp" "/home/nadezhda/CLionProjects/AI/cmake-build-debug/CMakeFiles/AI.dir/Sokoban.cpp.o"
   "/home/nadezhda/CLionProjects/AI/main.cpp" "/home/nadezhda/CLionProjects/AI/cmake-build-debug/CMakeFiles/AI.dir/main.cpp.o"
   )

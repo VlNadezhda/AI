@@ -10,6 +10,13 @@ CMakeFiles/AI.dir/Astar.cpp.o: ../Sokoban.h
 CMakeFiles/AI.dir/Point.cpp.o: ../Point.cpp
 CMakeFiles/AI.dir/Point.cpp.o: ../Point.h
 
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../Astar.h
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../Point.cpp
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../Point.h
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../PrintGame.cpp
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../PrintGame.h
+CMakeFiles/AI.dir/PrintGame.cpp.o: ../Sokoban.h
+
 CMakeFiles/AI.dir/Sokoban.cpp.o: ../Astar.h
 CMakeFiles/AI.dir/Sokoban.cpp.o: ../Point.cpp
 CMakeFiles/AI.dir/Sokoban.cpp.o: ../Point.h
@@ -19,6 +26,7 @@ CMakeFiles/AI.dir/Sokoban.cpp.o: ../Sokoban.h
 CMakeFiles/AI.dir/main.cpp.o: ../Astar.h
 CMakeFiles/AI.dir/main.cpp.o: ../Point.cpp
 CMakeFiles/AI.dir/main.cpp.o: ../Point.h
+CMakeFiles/AI.dir/main.cpp.o: ../PrintGame.h
 CMakeFiles/AI.dir/main.cpp.o: ../Sokoban.h
 CMakeFiles/AI.dir/main.cpp.o: ../main.cpp
 

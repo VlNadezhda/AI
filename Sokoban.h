@@ -14,14 +14,23 @@
 
 using namespace std;
 
-class Way_bar_mar{
+class Way_BM{
+//    позиция игрока перед движением бочки
     Point target_player;
     Point barrel;
     Point marks;
+//    путь от бочки до цели
     vector<Point> way;
 public:
-    Way_bar_mar(): barrel(0, 0), marks(0, 0), way(){}
-    Way_bar_mar(Point crates_, Point marks_, vector<Point> way_): barrel(crates_), marks(marks_), way(way_){}
+    Way_BM(): barrel(0, 0), marks(0, 0), way(){}
+    Way_BM(Point crates_, Point marks_, vector<Point> way_): barrel(crates_), marks(marks_), way(way_){
+        this->SetTarget();
+        vector<Point> it = this->GetWay();
+        reverse(it.begin(), it.end());
+        it.push_back(this->GetTarget());
+        reverse(it.begin(), it.end());
+        this->way.swap(it);
+    }
 
     Point GetBarrel(){
         return this->barrel;
@@ -32,6 +41,7 @@ public:
     vector<Point> GetWay(){
         return this->way;
     }
+//    куда встать игроку чтобы двигать бочку
     void SetTarget(){
         if (this->GetWay()[0].x < this->GetWay()[1].x) {
             this->target_player = Point(this->GetWay()[0].x - 1, this->GetWay()[0].y);
@@ -46,8 +56,7 @@ public:
     Point GetTarget(){
         return this->target_player;
     }
-
-    friend bool operator==(const Way_bar_mar& w1, const Way_bar_mar& w2){
+    friend bool operator==(const Way_BM& w1, const Way_BM& w2){
        return(w1.barrel.x == w2.barrel.x && w1.barrel.y == w2.barrel.y && w1.marks.x == w2.marks.x && w1.marks.y == w2.marks.y);
     };
 
@@ -64,7 +73,6 @@ class Sokoban {
             SetBarrel(board);
             SetMarks(board);
             SetPlayer(board);
-
         };
 
         void SetPlayer(multimap <char,Point> range){
@@ -104,11 +112,9 @@ class Sokoban {
             return this->player;
         };
 
-       vector<Way_bar_mar> path_barrel_to_memark(vector<Point> Marks_,vector<Point> Barrel_);
-
-        vector<Point> Find_false_path(vector<Way_bar_mar> SortList);
+       vector<Way_BM> path_bar_mark(vector<Point> Marks_, vector<Point> Barrel_);
+        vector<Point> Find_barrier(vector<Way_BM> SortList);
         void Solver();
         void Write_to_File(vector<vector<Point>> MainWay);
-
 };
 #endif //AI_SOKOBAN_H

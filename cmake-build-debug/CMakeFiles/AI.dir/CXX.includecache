@@ -21,6 +21,18 @@ Point.h
 /home/nadezhda/CLionProjects/AI/Point.h
 
 /home/nadezhda/CLionProjects/AI/Point.h
+iostream
+-
+
+/home/nadezhda/CLionProjects/AI/PrintGame.h
+vector
+-
+iostream
+-
+Sokoban.h
+/home/nadezhda/CLionProjects/AI/Sokoban.h
+Point.h
+/home/nadezhda/CLionProjects/AI/Point.h
 
 /home/nadezhda/CLionProjects/AI/Sokoban.h
 fstream
@@ -51,4 +63,6 @@ Sokoban.h
 /home/nadezhda/CLionProjects/AI/Sokoban.h
 Point.h
 /home/nadezhda/CLionProjects/AI/Point.h
+PrintGame.h
+/home/nadezhda/CLionProjects/AI/PrintGame.h
 

@@ -94,6 +94,12 @@
 		<Unit filename="/home/nadezhda/CLionProjects/AI/Point.h">
 			<Option target="AI"/>
 		</Unit>
+		<Unit filename="/home/nadezhda/CLionProjects/AI/PrintGame.cpp">
+			<Option target="AI"/>
+		</Unit>
+		<Unit filename="/home/nadezhda/CLionProjects/AI/PrintGame.h">
+			<Option target="AI"/>
+		</Unit>
 		<Unit filename="/home/nadezhda/CLionProjects/AI/Sokoban.cpp">
 			<Option target="AI"/>
 		</Unit>
